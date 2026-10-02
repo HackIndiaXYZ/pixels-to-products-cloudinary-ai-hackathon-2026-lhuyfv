@@ -1,16 +1,10 @@
 # RE:FRAME AI — Intelligent Media Readiness Pipeline
 
-> **Hackathon Submission:** Cloudinary AI Media Pipelines Track (`PS-01`)  
-> **Tagline:** One upload. Media ready everywhere.  
 > **Core Flow:** Upload → AI Understand → Analyze → Improve → Transform → Optimize → Deliver  
-
----
 
 ## 1. Project Overview
 
 **RE:FRAME AI** is an intelligent, automated media processing pipeline built directly on top of Cloudinary's Programmable Media infrastructure. Instead of requiring users to manually crop, resize, isolate backgrounds, compress, and re-export product photography and promotional media for every platform, RE:FRAME AI ingests a single raw image and synthesizes destination-ready assets for websites, social channels, e-commerce marketplaces, and mobile applications in seconds.
-
----
 
 ## 2. Problem
 
@@ -20,8 +14,6 @@ Creators, e-commerce merchants, agencies, and developers lose dozens of hours ev
 - **Background Clutter:** Product photos taken on workshop tables or warehouse floors fail marketplace compliance without tedious manual cutout masks.
 - **Bandwidth & Core Web Vitals Bloat:** Uploading unoptimized megabyte-sized JPEGs slows down page load times and damages SEO ranking.
 - **Storage Sprawl:** Storing 5 to 10 exported files per raw asset leads to massive storage bills and stale asset drift.
-
----
 
 ## 3. Solution
 
@@ -33,8 +25,6 @@ RE:FRAME AI unifies media intelligence and dynamic image transformations into a 
 5. **Dynamic Destination Transforms:** Cloudinary URL transformations generate tailored variants (Website 16:9, Social 4:5, Marketplace 1:1, Mobile Retina, Isolated PNG Cutout) using content-aware auto-gravity (`g_auto:subject`, `g_auto:face`).
 6. **Optimized Edge Delivery:** Cloudinary's `f_auto` and `q_auto` automatically serve lightweight next-gen formats (AVIF/WebP) with perceptual SSIM compression via global CDN edges.
 7. **Media Passport:** Issues a verified manifest with public ID, SHA-1 checksum, tags, and production-ready CDN URLs.
-
----
 
 ## 4. Key Features
 
@@ -48,8 +38,6 @@ RE:FRAME AI unifies media intelligence and dynamic image transformations into a 
 - **Optimized Delivery Benchmarking:** Live payload comparison illustrating byte reductions achieved via `f_auto` and `q_auto`.
 - **Searchable Asset Library:** Filter and search previously processed assets by semantic tags, category, or public ID.
 - **Runtime Cloudinary Credential Manager:** Seamlessly switch between demo cloud mode and custom signed Cloudinary accounts.
-
----
 
 ## 5. Architecture
 
@@ -72,7 +60,7 @@ RE:FRAME AI is architected as a full-stack TypeScript application with clean sep
 │  - GET  /api/samples         - Express static / Vite middleware
 └───────────────┬──────────────────────────────┬───────────────┘
                 │                              │
-                │ Server-side signed upload     │ Multimodal scene
+                │ Server-side signed upload    │ Multimodal scene
                 │                              │ analysis
                 ▼                              ▼
 ┌──────────────────────────────┐ ┌─────────────────────────────┐
@@ -86,8 +74,6 @@ RE:FRAME AI is architected as a full-stack TypeScript application with clean sep
 └──────────────────────────────┘
 ```
 
----
-
 ## 6. Cloudinary Integration
 
 Cloudinary is not used as a dumb storage bucket; it is the **active execution engine** of the media pipeline:
@@ -96,8 +82,6 @@ Cloudinary is not used as a dumb storage bucket; it is the **active execution en
 2. **Subject-Preserving Auto Cropping:** Rather than center-cropping (which cuts off off-center objects or heads), Cloudinary's `g_auto:subject` and `g_auto:face` analyze the image geometry and keep the vital content in frame.
 3. **AI Background Removal:** Product isolation is handled via Cloudinary's `e_background_removal` transformation, outputting clean alpha PNGs for marketplace white padding or composite banners.
 4. **Client-Adaptive Delivery:** `f_auto` inspects browser support (AVIF for Chromium, WebP for Safari/Firefox) and `q_auto` uses structural similarity metrics to minimize byte size without visual degradation.
-
----
 
 ## 7. Cloudinary APIs & Features Used
 
@@ -112,8 +96,6 @@ Cloudinary is not used as a dumb storage bucket; it is the **active execution en
 | **Dynamic Next-Gen Format** | `f_auto` | Automatically negotiates AVIF / WebP depending on client browser headers. |
 | **Perceptual Compression** | `q_auto` / `q_auto:eco` | SSIM-tuned compression cutting 70%+ bandwidth while preserving fidelity. |
 | **DPR Retina Scaling** | `dpr_2.0,c_scale` | Delivers crystal-clear resolution on high-density mobile screens without extra file versions. |
-
----
 
 ## 8. Environment Variables
 
@@ -134,8 +116,6 @@ PORT=3000
 
 > **Note on Zero-Config Demo Mode:** If `CLOUDINARY_CLOUD_NAME` is not supplied, RE:FRAME AI seamlessly runs in demo mode using Cloudinary's verified demo cloud and pre-indexed commercial assets so evaluators never encounter broken states.
 
----
-
 ## 9. Local Setup
 
 ### Prerequisites
@@ -150,8 +130,6 @@ cd reframe-ai
 # Install dependencies
 npm install
 ```
-
----
 
 ## 10. Running the Application
 
@@ -172,8 +150,6 @@ npm run build
 npm start
 ```
 
----
-
 ## 11. Deployment
 
 RE:FRAME AI is packaged for single-container cloud deployment (e.g. Cloud Run, Render, Railway, Fly.io, or Heroku):
@@ -182,37 +158,12 @@ RE:FRAME AI is packaged for single-container cloud deployment (e.g. Cloud Run, R
 - Build command: `npm run build`
 - Start command: `npm start`
 
----
-
-## 12. Demo Workflow
-
-Follow these steps to demonstrate the end-to-end pipeline:
-
-1. **Launch Dashboard:** Open `http://localhost:3000`. The metrics bar shows processed assets and real bandwidth optimization.
-2. **Test Commercial Preset:** Click on the **Pro-Aero Runner Sneaker** preset in the Upload Zone.
-3. **Watch Pipeline Progression:**
-   - `UPLOAD` → Ingests to Cloudinary with color/EXIF extraction.
-   - `UNDERSTAND` → AI classifies "Athletic Running Sneaker", category "Footwear & Apparel", and detects background floor texture.
-   - `ANALYZE` → Readiness Scorecard calculates 94% compliance.
-   - `TRANSFORM` → Builds 6 Cloudinary destination variants.
-   - `OPTIMIZE` → Enables `f_auto` and `q_auto`.
-   - `READY` → Issues the Media Passport.
-4. **Inspect Destination Variants:** Click between **Website (16:9)**, **Social (4:5)**, **Marketplace (1:1)**, **Mobile**, and **Cutout (PNG)**. Review the exact transformation syntax (e.g., `c_fill,ar_16:9,g_auto,f_auto,q_auto`).
-5. **Interactive Comparison:** Use the **Original vs. RE:FRAME** split slider to see how distracting floor textures are cleaned up and subject curves are preserved.
-6. **Examine Media Passport:** Review the cryptographic SHA-1 signature, Cloudinary Public ID, and copy the manifest JSON.
-7. **Browse Asset Library:** Switch to the **Asset Library** tab, search for `"shoe"` or click the `sneaker` tag to test dynamic search filtering.
-8. **Test Custom Upload:** Drag and drop any raw product image or portrait from your computer to run the pipeline live.
-
----
-
-## 13. Future Improvements
+## 12. Future Improvements
 
 - **Cloudinary Generative AI Fill:** Automatically expand 1:1 square assets into 16:9 banners using `e_gen_fill`.
 - **Automated Social Scheduling:** Direct webhooks to Shopify, Amazon Seller Central, and Meta Graph API.
 - **Video Readiness Pipeline:** Extend the pipeline to short-form video (TikTok/Reels/Shorts) using Cloudinary's dynamic video cropping (`c_fill,ar_9:16,g_auto`) and audio normalization.
 - **Batch Processing Queue:** Bulk folder processing for enterprise catalogs with CSV export.
-
----
 
 ## License
 
