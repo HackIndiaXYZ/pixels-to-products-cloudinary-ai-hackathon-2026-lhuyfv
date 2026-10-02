@@ -1,0 +1,6 @@
+{
+  "name": "RE:FRAME AI — Intelligent Media Readiness Pipeline",
+  "description": "AI-powered media processing pipeline that understands, improves, transforms, and optimizes raw media into destination-ready assets with Cloudinary.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
