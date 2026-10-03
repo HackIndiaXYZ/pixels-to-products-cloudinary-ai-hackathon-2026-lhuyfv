@@ -4,16 +4,19 @@ import type { MediaIntelligence } from '../src/types/pipeline.js';
 let aiInstance: OpenAI | null = null;
 
 function getAIClient(): OpenAI | null {
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.FEATHERLESS_API_KEY;
     if (!apiKey) return null;
     if (!aiInstance) {
-        aiInstance = new OpenAI({ apiKey });
+        aiInstance = new OpenAI({
+            apiKey,
+            baseURL: 'https://api.featherless.ai/v1',
+        });
     }
     return aiInstance;
 }
 
 export function isOpenAIAvailable(): boolean {
-    return Boolean(process.env.OPENAI_API_KEY);
+    return Boolean(process.env.FEATHERLESS_API_KEY);
 }
 
 export async function analyzeMediaWithAI(
@@ -80,7 +83,7 @@ Ensure tags are practical for e-commerce, social, and search discovery.
 Output ONLY raw JSON, no markdown, no code fences.`;
 
             const response = await ai.chat.completions.create({
-                model: 'gpt-4o',
+                model: 'Qwen/Qwen3-VL-8B-Instruct',
                 max_tokens: 1024,
                 temperature: 0.2,
                 response_format: { type: 'json_object' },
