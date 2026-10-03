@@ -87,7 +87,7 @@ export function getConfigStatus(): CloudinaryConfigStatus {
     hasApiKey: Boolean(runtimeApiKey),
     hasApiSecret: Boolean(runtimeApiSecret),
     mode: isCustomConfigured ? 'custom' : 'demo',
-    geminiConfigured: Boolean(process.env.GROQ_API_KEY),
+    geminiConfigured: Boolean(process.env.OPENAI_API_KEY),
     isCloudNameValid: !isKnownPlaceholder,
     cloudNameError: isKnownPlaceholder
       ? `'${runtimeCloudName}' is the app project title, not a Cloudinary cloud name. Using Cloudinary Demo Mode.`
