@@ -64,7 +64,7 @@ RE:FRAME AI is architected as a full-stack TypeScript application with clean sep
                 │                              │ analysis
                 ▼                              ▼
 ┌──────────────────────────────┐ ┌─────────────────────────────┐
-│    Cloudinary Programmable   │ │    Google Gemini 2.5 Flash  │
+│    Cloudinary Programmable   │ │     OpenAI GPT-4o Vision    │
 │        Media Service         │ │     Multimodal Analysis     │
 │  - Upload API (colors, EXIF) │ │  - Subject detection        │
 │  - Dynamic URL Transforms    │ │  - Composition audit        │
@@ -107,8 +107,8 @@ CLOUDINARY_CLOUD_NAME="your_cloud_name"
 CLOUDINARY_API_KEY="your_api_key"
 CLOUDINARY_API_SECRET="your_api_secret"
 
-# Optional: Google Gemini API Key for deep multimodal scene understanding
-GEMINI_API_KEY="your_gemini_api_key"
+# OpenAI API Key for GPT-4o Vision multimodal scene understanding
+OPENAI_API_KEY="your_openai_api_key"
 
 # Port (defaults to 3000)
 PORT=3000

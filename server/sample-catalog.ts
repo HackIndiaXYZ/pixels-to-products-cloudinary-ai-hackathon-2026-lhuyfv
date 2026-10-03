@@ -258,7 +258,7 @@ export const INITIAL_PROCESSED_ASSETS: ProcessedAsset[] = [
       tags: ['sneaker', 'footwear', 'running', 'athletic', 'sportswear'],
       processingPipeline: [
         'cloudinary:upload:v2',
-        'gemini:multimodal_understand',
+        'openai:vision_understand',
         'cloudinary:c_fill_g_auto',
         'cloudinary:e_background_removal',
         'cloudinary:delivery:f_auto_q_auto',
@@ -483,7 +483,7 @@ export const INITIAL_PROCESSED_ASSETS: ProcessedAsset[] = [
       tags: ['portrait', 'headshot', 'executive', 'leadership', 'professional'],
       processingPipeline: [
         'cloudinary:upload:v2',
-        'gemini:multimodal_understand',
+        'openai:vision_understand',
         'cloudinary:c_fill_g_auto:face',
         'cloudinary:e_background_removal',
         'cloudinary:delivery:f_auto_q_auto',

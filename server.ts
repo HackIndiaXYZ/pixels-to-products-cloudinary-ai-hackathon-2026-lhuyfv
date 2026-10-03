@@ -10,7 +10,7 @@ import {
   uploadToCloudinary,
   createProcessedAssetRecord,
 } from './server/cloudinary-service.js';
-import { analyzeMediaWithAI, isGeminiAvailable } from './server/gemini-service.js';
+import { analyzeMediaWithAI, isOpenAIAvailable } from './server/openai-service.js';
 import { INITIAL_PROCESSED_ASSETS, SAMPLE_PRESETS } from './server/sample-catalog.js';
 import type { ProcessedAsset } from './src/types/pipeline.js';
 
@@ -66,7 +66,7 @@ app.get('/api/status', (req, res) => {
   const status = getConfigStatus();
   res.json({
     ...status,
-    geminiConfigured: isGeminiAvailable(),
+    geminiConfigured: isOpenAIAvailable(),
     totalAssets: processedAssets.length,
   });
 });
