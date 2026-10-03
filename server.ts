@@ -253,7 +253,7 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     // Production mode: Serve built static files
-    const distPath = path.resolve('dist');
+    const distPath = path.resolve(path.dirname(new URL(import.meta.url).pathname), '.');
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
