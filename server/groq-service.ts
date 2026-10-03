@@ -83,9 +83,10 @@ Rules:
 Output ONLY raw JSON, no markdown, no code fences.`;
 
             const response = await ai.chat.completions.create({
-                model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+                model: 'qwen/qwen3.8-27b',
                 max_tokens: 1024,
                 temperature: 0.2,
+                response_format: { type: 'json_object' },
                 messages: [
                     {
                         role: 'user',
